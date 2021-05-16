@@ -1,5 +1,6 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 
 void main() {
   runApp(Music());
@@ -14,9 +15,9 @@ class _DinoMusicState extends State<DinoMusic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue,
-        body: Container(
-            child: Column(
+      backgroundColor: Colors.indigo[900],
+      body: Container(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
@@ -26,17 +27,29 @@ class _DinoMusicState extends State<DinoMusic> {
               ),
             ),
             Center(
-                child: Text("Track Name",
-                    style: TextStyle(fontFamily: 'Bold', color: Colors.white))),
+              child: Text(
+                "Track Name",
+                style: TextStyle(fontFamily: 'Monospace',fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+            ),
             Container(
+              height:MediaQuery.of(context).size.height*0.5,
+              width: MediaQuery.of(context).size.width*0.9,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15),
                 image: DecorationImage(
-                    fit: BoxFit.cover, image: AssetImage("image/groovy.png")),
+                  fit: BoxFit.cover,
+                  image: AssetImage("image/groovy.png"),
+                ),
               ),
-            )
+            ),
+            Slider(value:20, onChanged:(value){} ,activeColor: Colors.deepPurple,min: 0,max: 100),
+            Row(mainAxisAlignment: MainAxisAlignment.center,children:[Icon(Icons.replay_10_outlined,size: 40,color: Colors.pink,),Icon(Icons.play_arrow_outlined,size:60,color: Colors.purple,),Icon(Icons.forward_10_outlined,size:40,color: Colors.pink,)]),
           ],
-        )));
+        ),
+      ),
+    );
   }
 }
 
